@@ -127,17 +127,17 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
     }
   }
 
-  @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-  private boolean updateTimeKeeper(@Nullable Instant instant) {
-    if (instant == null) {
-      return true;
-    }
-    if (!this.timeKeeper.update(instant)) {
-      player.disconnect(Component.translatable("multiplayer.disconnect.out_of_order_chat"));
-      return false;
-    }
-    return true;
-  }
+  //@SuppressWarnings("BooleanMethodIsAlwaysInverted")
+  //private boolean updateTimeKeeper(@Nullable Instant instant) {
+  //  if (instant == null) {
+  //    return true;
+  //  }
+  //  if (!this.timeKeeper.update(instant)) {
+  //    player.disconnect(Component.translatable("multiplayer.disconnect.out_of_order_chat"));
+  //    return false;
+  //  }
+  //  return true;
+  //}
 
   @SuppressWarnings("BooleanMethodIsAlwaysInverted")
   private boolean validateChat(String message) {
@@ -193,9 +193,9 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
   public boolean handle(SessionPlayerCommand packet) {
     player.ensureAndGetCurrentServer();
 
-    if (!updateTimeKeeper(packet.getTimeStamp())) {
-      return true;
-    }
+    //if (!updateTimeKeeper(packet.getTimeStamp())) {
+    //  return true;
+    //}
 
     if (!validateChat(packet.getCommand())) {
       return true;
@@ -208,9 +208,9 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
   public boolean handle(SessionPlayerChat packet) {
     player.ensureAndGetCurrentServer();
 
-    if (!updateTimeKeeper(packet.getTimestamp())) {
-      return true;
-    }
+    //if (!updateTimeKeeper(packet.getTimestamp())) {
+    //  return true;
+    //}
 
     if (!validateChat(packet.getMessage())) {
       return true;
@@ -223,9 +223,9 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
   public boolean handle(KeyedPlayerCommand packet) {
     player.ensureAndGetCurrentServer();
 
-    if (!updateTimeKeeper(packet.getTimestamp())) {
-      return true;
-    }
+    //if (!updateTimeKeeper(packet.getTimestamp())) {
+    //  return true;
+    //}
 
     if (!validateChat(packet.getCommand())) {
       return true;
@@ -238,9 +238,9 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
   public boolean handle(KeyedPlayerChat packet) {
     player.ensureAndGetCurrentServer();
 
-    if (!updateTimeKeeper(packet.getExpiry())) {
-      return true;
-    }
+    //if (!updateTimeKeeper(packet.getExpiry())) {
+    //  return true;
+    //}
 
     if (!validateChat(packet.getMessage())) {
       return true;
